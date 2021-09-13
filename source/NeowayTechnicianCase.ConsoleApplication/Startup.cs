@@ -3,8 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NeowayTechnicianCase.Core.Interfaces.Repositories;
+using NeowayTechnicianCase.Core.Interfaces.Services;
 using NeowayTechnicianCase.Infrastructure.Data;
 using NeowayTechnicianCase.Infrastructure.Repositories;
+using NeowayTechnicianCase.Infrastructure.Services;
 
 namespace NeowayTechnicianCase.ConsoleApplication
 {
@@ -41,13 +43,16 @@ namespace NeowayTechnicianCase.ConsoleApplication
                 var scopedServices = scope.ServiceProvider;
                 var db = scopedServices.GetRequiredService<ApplicationDbContext>();
 
-                db.Database.Migrate();
                 db.Database.EnsureDeleted();
+                db.Database.Migrate();
             }
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IPurchaseRepository, PurchaseRepository>();
             services.AddTransient<IStoreRepository, StoreRepository>();
+
+            services.AddScoped<IFileReading, FileReading>();
+            services.AddScoped<IFilePersisting, FilePersisting>();
         }
     }
 }

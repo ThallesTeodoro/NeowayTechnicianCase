@@ -23,4 +23,10 @@
     <ProjectReference Include="..\..\source\NeowayTechnicianCase.Infrastructure\NeowayTechnicianCase.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="base_teste.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
