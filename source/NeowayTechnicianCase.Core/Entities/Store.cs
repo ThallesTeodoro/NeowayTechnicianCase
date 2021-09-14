@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace NeowayTechnicianCase.Core.Entities
 {
     public class Store : BaseEntity
