@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace NeowayTechnicianCase.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210911185823_InitialMigrations")]
-    partial class InitialMigrations
+    [Migration("20210914031921_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace NeowayTechnicianCase.Infrastructure.Migrations
                 .HasAnnotation("ProductVersion", "5.0.9")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-            modelBuilder.Entity("NeowayTest.Core.Entities.Purchase", b =>
+            modelBuilder.Entity("NeowayTechnicianCase.Core.Entities.Purchase", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -63,7 +63,7 @@ namespace NeowayTechnicianCase.Infrastructure.Migrations
                     b.ToTable("Purchases");
                 });
 
-            modelBuilder.Entity("NeowayTest.Core.Entities.Store", b =>
+            modelBuilder.Entity("NeowayTechnicianCase.Core.Entities.Store", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -80,13 +80,13 @@ namespace NeowayTechnicianCase.Infrastructure.Migrations
                     b.ToTable("Stores");
                 });
 
-            modelBuilder.Entity("NeowayTest.Core.Entities.Purchase", b =>
+            modelBuilder.Entity("NeowayTechnicianCase.Core.Entities.Purchase", b =>
                 {
-                    b.HasOne("NeowayTest.Core.Entities.Store", "LastStore")
+                    b.HasOne("NeowayTechnicianCase.Core.Entities.Store", "LastStore")
                         .WithMany()
                         .HasForeignKey("LastStoreId");
 
-                    b.HasOne("NeowayTest.Core.Entities.Store", "UsualStore")
+                    b.HasOne("NeowayTechnicianCase.Core.Entities.Store", "UsualStore")
                         .WithMany()
                         .HasForeignKey("UsualStoreId");
 

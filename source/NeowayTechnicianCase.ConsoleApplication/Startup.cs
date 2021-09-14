@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -36,6 +37,13 @@ namespace NeowayTechnicianCase.ConsoleApplication
             services.AddDbContext<ApplicationDbContext>(options => options
                 .UseNpgsql(Configuration.GetConnectionString("ApplicationContext")));
 
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<IPurchaseRepository, PurchaseRepository>();
+            services.AddTransient<IStoreRepository, StoreRepository>();
+
+            services.AddScoped<IFileReading, FileReading>();
+            services.AddScoped<IFilePersisting, FilePersisting>();
+
             var sp = services.BuildServiceProvider();
 
             using (var scope = sp.CreateScope())
@@ -43,16 +51,10 @@ namespace NeowayTechnicianCase.ConsoleApplication
                 var scopedServices = scope.ServiceProvider;
                 var db = scopedServices.GetRequiredService<ApplicationDbContext>();
 
-                db.Database.EnsureDeleted();
-                db.Database.Migrate();
+                db.Purchases.RemoveRange(db.Purchases);
+                db.Stores.RemoveRange(db.Stores);
+                db.SaveChanges();
             }
-
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
-            services.AddTransient<IPurchaseRepository, PurchaseRepository>();
-            services.AddTransient<IStoreRepository, StoreRepository>();
-
-            services.AddScoped<IFileReading, FileReading>();
-            services.AddScoped<IFilePersisting, FilePersisting>();
         }
     }
 }

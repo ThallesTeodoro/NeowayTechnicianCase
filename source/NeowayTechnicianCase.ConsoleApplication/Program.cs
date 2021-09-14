@@ -18,7 +18,8 @@ namespace NeowayTechnicianCase.ConsoleApplication
             Console.Clear();
             Console.WriteLine("Press any key to start the application.");
             Console.ReadKey();
-            Console.WriteLine("\nRunning the service...");
+
+            Console.WriteLine("\nPreparing services...");
 
             IServiceCollection services = new ServiceCollection();
 
@@ -33,13 +34,16 @@ namespace NeowayTechnicianCase.ConsoleApplication
 
             DateTime init = DateTime.Now;
 
+            Console.WriteLine("\nProcess started at " + init.ToString() + ". Running the File Reading and Persisting service...");
+
             List<string[]> data = await fileReading.ReadFile(path,  @"[ ]{1,}", 1);
             await filePersisting.Persist(data);
 
             DateTime final = DateTime.Now;
 
+            Console.WriteLine("\nFinished at " + final.ToString() + "\n");
             Console.WriteLine("\n--------------------------------------------\n");
-            Console.WriteLine("Runtime: " + (final - init).TotalSeconds);
+            Console.WriteLine("Runtime: " + (final - init).TotalSeconds + " s");
 
             var sp = services.BuildServiceProvider();
 
@@ -48,11 +52,8 @@ namespace NeowayTechnicianCase.ConsoleApplication
                 var scopedServices = scope.ServiceProvider;
                 var db = scopedServices.GetRequiredService<ApplicationDbContext>();
 
-                Console.WriteLine("Database rows affected(Purchase): " + db.Purchases.Count());
+                Console.WriteLine("Database rows affected(Purchase): " + db.Purchases.Count() + "\n\n");
             }
-
-            Console.WriteLine("\n\nPress any key to quit.");
-            Console.ReadKey();
         }
     }
 }

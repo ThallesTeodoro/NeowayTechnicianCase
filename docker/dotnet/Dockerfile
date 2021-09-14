@@ -6,4 +6,10 @@ RUN apt-get update && apt-get upgrade -y
 
 RUN apt-get install -y libc6-dev libgdiplus
 
-ENTRYPOINT dotnet --project source/NeowayTechnicianCase.ConsoleApplication run
+WORKDIR /app/source/NeowayTechnicianCase.Infrastructure
+
+RUN dotnet ef database update
+
+WORKDIR /app/source/NeowayTechnicianCase.ConsoleApplication
+
+ENTRYPOINT dotnet run
