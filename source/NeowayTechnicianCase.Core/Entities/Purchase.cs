@@ -1,10 +1,12 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NeowayTechnicianCase.Core.Entities
 {
     public class Purchase : BaseEntity
     {
+        [StringLength(14)]
         public string CPF { get; set; }
         public bool CPFIsValid { get; set; }
         public bool Private { get; set; }
