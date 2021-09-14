@@ -2,6 +2,7 @@
 
 ## Directory Structure
 
+```
 .
 ├── docker
 │   └──dotnet
@@ -33,10 +34,11 @@
 ├── docker-compose.yml
 ├── NeowayTechnicianCase.sln
 └── README.md
+```
 
 ## DER
 
-![alt text](https://github.com/ThallesTeodoro/NeowayTechnicianCase/blob/development/DER.jpg?raw=true)
+![alt text](https://github.com/ThallesTeodoro/NeowayTechnicianCase/blob/development/DER.png?raw=true)
 
 
 ## Setup
