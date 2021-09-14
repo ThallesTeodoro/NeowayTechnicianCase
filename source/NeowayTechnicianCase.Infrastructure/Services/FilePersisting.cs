@@ -45,8 +45,6 @@ namespace NeowayTechnicianCase.Infrastructure.Services
 
             try
             {
-                int i = 0;
-
                 foreach (string[] item in data)
                 {
                     Purchase purchase = NewPurchase(item);
@@ -100,8 +98,6 @@ namespace NeowayTechnicianCase.Infrastructure.Services
                     }
 
                     purchases.Add(purchase);
-
-                    i++;
                 }
 
                 await _purchaseRepository.AddManyAsync(purchases);

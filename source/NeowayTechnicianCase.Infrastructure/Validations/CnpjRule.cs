@@ -9,7 +9,7 @@ namespace NeowayTechnicianCase.Infrastructure.Validations
         /// Check if the value is a valid CNPJ
         /// </summary>
         /// <param name="value"></param>
-        /// <returns></returns>
+        /// <returns>Boolean</returns>
         public bool Passes(string value)
         {
             value = value.Trim()
@@ -27,7 +27,7 @@ namespace NeowayTechnicianCase.Infrastructure.Validations
                 return false;
             }
 
-            int[] multiplier = new int[13] {6,5,4,3,2,9,8,7,6,5,4,3,2};
+            int[] multiplier = new int[13] { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
 
             int sum = 0;
 

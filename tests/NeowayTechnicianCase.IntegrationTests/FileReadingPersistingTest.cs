@@ -25,7 +25,7 @@ namespace NeowayTechnicianCase.IntegrationTests
 
                 string path = Directory.GetCurrentDirectory() + "/base_teste.txt";
 
-                List<string[]> data = await fileReading.ReadFile(path, new char[] { ' ' }, 1);
+                List<string[]> data = await fileReading.ReadFile(path, @"[ ]{1,}", 1);
                 await filePersisting.Persist(data);
 
                 Assert.True(db.Purchases.Count() == 140);

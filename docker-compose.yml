@@ -21,7 +21,7 @@ services:
     build: ./docker/dotnet
     volumes:
       - ./:/app
-    restart: on-failure
+    restart: always
     links:
       - database
     networks:

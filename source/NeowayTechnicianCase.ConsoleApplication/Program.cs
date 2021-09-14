@@ -15,9 +15,9 @@ namespace NeowayTechnicianCase.ConsoleApplication
     {
         static async Task Main(string[] args)
         {
-            // Console.Clear();
+            Console.Clear();
             Console.WriteLine("Press any key to start the application.");
-            // Console.ReadKey();
+            Console.ReadKey();
             Console.WriteLine("\nRunning the service...");
 
             IServiceCollection services = new ServiceCollection();
@@ -33,9 +33,8 @@ namespace NeowayTechnicianCase.ConsoleApplication
 
             DateTime init = DateTime.Now;
 
-            List<string[]> data = await fileReading.ReadFile(path, new char[] { ' ' }, 1);
+            List<string[]> data = await fileReading.ReadFile(path,  @"[ ]{1,}", 1);
             await filePersisting.Persist(data);
-            // await filePersisting.ReadPersisting(path, new char[] { ' ' }, 1);
 
             DateTime final = DateTime.Now;
 
@@ -53,7 +52,7 @@ namespace NeowayTechnicianCase.ConsoleApplication
             }
 
             Console.WriteLine("\n\nPress any key to quit.");
-            // Console.ReadKey();
+            Console.ReadKey();
         }
     }
 }

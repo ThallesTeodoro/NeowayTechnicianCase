@@ -3,7 +3,6 @@ using System.IO;
 using System.Threading.Tasks;
 using NeowayTechnicianCase.Core.Interfaces.Services;
 using NeowayTechnicianCase.Infrastructure.Services;
-using NeowayTechnicianCase.Infrastructure.Validations;
 using Xunit;
 
 namespace NeowayTechnicianCase.UnitTests
@@ -17,7 +16,7 @@ namespace NeowayTechnicianCase.UnitTests
 
             IFileReading fileReading = new FileReading();
 
-            List<string[]> data = await fileReading.ReadFile(path, new char[] { ' ' }, 1);
+            List<string[]> data = await fileReading.ReadFile(path, @"[ ]{1,}", 1);
 
             Assert.True(data.Count == 140);
         }

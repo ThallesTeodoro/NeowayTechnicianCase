@@ -12,6 +12,6 @@ namespace NeowayTechnicianCase.Core.Interfaces.Services
         /// <param name="delimiter"></param>
         /// <param name="skip"></param>
         /// <returns>A list of Porchase read from the file</returns>
-        Task<List<string[]>> ReadFile(string path, char[] delimiter, int skip = 1);
+        Task<List<string[]>> ReadFile(string path, string delimiter, int skip = 1);
     }
 }

@@ -1,6 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using NeowayTechnicianCase.Core.Interfaces.Services;
 
@@ -15,7 +15,7 @@ namespace NeowayTechnicianCase.Infrastructure.Services
         /// <param name="delimiter"></param>
         /// <param name="skip"></param>
         /// <returns>A list of Porchase read from the file</returns>
-        public async Task<List<string[]>> ReadFile(string path, char[] delimiter, int skip = 1)
+        public async Task<List<string[]>> ReadFile(string path, string delimiter, int skip = 1)
         {
             List<string[]> items = new List<string[]>();
 
@@ -27,7 +27,7 @@ namespace NeowayTechnicianCase.Infrastructure.Services
                 {
                     if (count > skip)
                     {
-                        string[] segments = line.Split(delimiter, StringSplitOptions.RemoveEmptyEntries);
+                        string[] segments = Regex.Split(line, delimiter);
                         items.Add(segments);
                     }
                     else
